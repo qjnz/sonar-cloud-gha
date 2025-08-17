@@ -1,0 +1,15 @@
+name: Pull Request
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+            - uses: actions/setup-node@v4
+            - run: npm ci
+            - run: npm run test && npm run test:coverage
+            - run: npm run build
